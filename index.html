@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LordHook | Desarrollador de Juegos Móviles</title>
+  <meta name="description" content="Página oficial de LordHook, creador de Chess Clash: Battle of Kings y juegos tácticos para Android." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0e17;
+      --card-bg: #111827;
+      --card-border: #1f293d;
+      --accent-gold: #f59e0b;
+      --accent-gold-glow: rgba(245, 158, 11, 0.25);
+      --accent-blue: #3b82f6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 100% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
+    }
+    header {
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--accent-gold);
+    }
+    main {
+      flex: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      width: 100%;
+    }
+    .hero {
+      text-align: center;
+      padding: 40px 0 60px;
+    }
+    .badge-dev {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: #fbbf24;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lead {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .game-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      md-flex-direction: row;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .game-card {
+        flex-direction: row;
+        text-align: left;
+      }
+    }
+    .game-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #10b981;
+      color: #064e3b;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .game-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid rgba(245, 158, 11, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      flex-shrink: 0;
+      box-shadow: 0 10px 25px var(--accent-gold-glow);
+    }
+    .game-details h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+    .game-details p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      font-size: 1rem;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #111827;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 10px 20px var(--accent-gold-glow);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(245, 158, 11, 0.35);
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    }
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .info-box {
+      background: rgba(17, 24, 39, 0.6);
+      border: 1px solid var(--card-border);
+      padding: 24px;
+      border-radius: 16px;
+      transition: border-color 0.2s;
+    }
+    .info-box:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    .info-box h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .info-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .info-box a {
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .info-box a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 30px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--text-muted);
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--accent-gold);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span>👑</span> LordHook
+    </div>
+    <nav class="nav-links">
+      <a href="#games">Juegos</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="terms.html">Términos</a>
+      <a href="mailto:support@lordhook.com">Soporte</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="badge-dev">⭐ Desarrollador Verificado de Google Play</div>
+      <h1>Estudio Independiente <span>LordHook</span></h1>
+      <p class="lead">Desarrollamos experiencias de videojuegos tácticos, inmersivos y competitivos para dispositivos móviles Android.</p>
+    </section>
+
+    <section id="games">
+      <div class="game-card">
+        <div class="game-badge">Disponible en Play Store</div>
+        <div class="game-icon">⚔️</div>
+        <div class="game-details">
+          <h2>Chess Clash: Battle of Kings</h2>
+          <p>
+            El clásico juego de ajedrez reinventado con un diseño visual de batalla épico, piezas temáticas hiperrealistas, arenas fantásticas (Lava, Jungla, Tronos), multijugador en tiempo real y entrenamiento contra Inteligencia Artificial táctica.
+          </p>
+          <a class="cta-btn" href="https://play.google.com/store/apps/details?id=com.lordhook.chessclash" target="_blank" rel="noopener noreferrer">
+            <span>📲 Ver en Google Play</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="links-grid">
+      <div class="info-box">
+        <h3>🛡️ Política de Privacidad</h3>
+        <p>Cumplimiento íntegro de las directrices de privacidad y protección de datos para usuarios y menores de Google Play.</p>
+        <a href="privacy.html">Leer Política de Privacidad &rarr;</a>
+      </div>
+
+      <div class="info-box">
+        <h3>📜 Términos del Servicio</h3>
+        <p>Condiciones y directrices de uso de nuestras aplicaciones y servicios móviles.</p>
+        <a href="terms.html">Leer Términos de Servicio &rarr;</a>
+      </div>
+
+      <div class="info-box">
+        <h3>🔒 Verificación de Publicidad</h3>
+        <p>Archivo oficial <code>app-ads.txt</code> para la verificación de inventario publicitario ante Google AdMob y la IAB.</p>
+        <a href="app-ads.txt">Ver app-ads.txt &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 LordHook. Todos los derechos reservados.</p>
+    <p style="margin-top: 8px;">
+      <a href="privacy.html">Política de Privacidad</a> •
+      <a href="terms.html">Términos y Condiciones</a> •
+      <a href="app-ads.txt">app-ads.txt</a> •
+      <a href="mailto:support@lordhook.com">Contacto de Soporte</a>
+    </p>
+  </footer>
+</body>
+</html>
